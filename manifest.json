@@ -28,11 +28,11 @@
     "sizes": "168x168",
     "type": "image/png"
   }, {
-    "src": "https://github.com/Viraj1411/Geeklinx/blob/3e9bd64e55fd7801797695b99f69db5d293f1010/geeklinx-app-icon.png",
+    "src": "https://github.com/Viraj1411/Geeklinx/blob/657ea7d577ba8830e9404cd7c5f2df6c2bc1c95b/android-chrome-192x192.png",
     "sizes": "192x192",
     "type": "image/png"
   }, {
-    "src": "https://github.com/Viraj1411/Geeklinx/blob/3e9bd64e55fd7801797695b99f69db5d293f1010/geeklinx-app-icon.png",
+    "src": "https://github.com/Viraj1411/Geeklinx/blob/657ea7d577ba8830e9404cd7c5f2df6c2bc1c95b/android-chrome-512x512.png",
     "sizes": "512x512",
     "type": "image/png"
   }]
