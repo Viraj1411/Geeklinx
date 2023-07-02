@@ -1,7 +1,7 @@
 {
   "name": "GeekLinx",
   "short_name": "GeekLinx",
-  "start_url": "https://www.geeklinx.in/",
+  "start_url": "https://www.geeklinx.in",
   "display": "standalone",
   "offline_enabled": true
   "background_color": "#482dff",
