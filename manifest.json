@@ -1,5 +1,4 @@
-addEventListener("fetch", event => {
-  const data = {
+{
     name: "GeekLinx",
     short_name: "GeekLinx",
     description: "Unlock the Front-End Magic with Geeklinx: Discover, Learn, and Code!",
@@ -129,14 +128,3 @@ addEventListener("fetch", event => {
       src: "\/sw.js"
     }
   }
-
-  const json = JSON.stringify(data, null, 2)
-
-  return event.respondWith(
-    new Response(json, {
-      headers: {
-        "content-type": "application/json;charset=UTF-8"
-      }
-    })
-  )
-})
