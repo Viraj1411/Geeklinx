@@ -4,7 +4,7 @@
   "start_url": "https://www.geeklinx.in/",
   "display": "standalone",
   "offline_enabled": true
-  "background_color": "#fff",
+  "background_color": "#482dff",
   "theme_color": "#482dff",
   "description": "Unlock the Front-End Magic with Geeklinx: Discover, Learn, and Code!",
   "icons": [{
