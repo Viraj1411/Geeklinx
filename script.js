@@ -1,17 +1,17 @@
 var htmlEditor = ace.edit("html");
-htmlEditor.setTheme("ace/theme/cobalt");
+htmlEditor.setTheme("ace/theme/monokai);
 htmlEditor.session.setMode("ace/mode/html");
 htmlEditor.resize();
 htmlEditor.setHighlightActiveLine(false);
 
 var cssEditor = ace.edit("css");
-cssEditor.setTheme("ace/theme/cobalt");
+cssEditor.setTheme("ace/theme/monokai");
 cssEditor.session.setMode("ace/mode/css");
 cssEditor.resize();
 cssEditor.setHighlightActiveLine(false);
 
 var jsEditor = ace.edit("js");
-jsEditor.setTheme("ace/theme/cobalt");
+jsEditor.setTheme("ace/theme/monokai");
 jsEditor.session.setMode("ace/mode/javascript");
 jsEditor.resize();
 jsEditor.setHighlightActiveLine(false);
