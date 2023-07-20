@@ -1,0 +1,962 @@
+<style> 
+  :root {
+     --topbar-bg: #fdfdfd;
+     --topbar-alt-bg: #f2f2f2;
+      --topbar-hover-bg-color: #f2f2f2;
+      --topbar-active-bg-color: #c9c9c9	;
+      --topbar-active-txt-color: #fff;
+      --topbar-hover-txt-color: #787878;
+    
+      
+  }
+  
+  .dark {
+     --topbar-bg: #121110;
+     --topbar-alt-bg: #0c0c0b;
+      --topbar-hover-bg-color: #1f1e1c;
+      --topbar-active-bg-color: #353432;
+      --topbar-active-txt-color: #d5d4d4;
+      --topbar-hover-txt-color: #787878;
+    
+  }
+  
+ 
+    
+  /* Some styles for the div in full-screen mode */
+          #fullScreenDiv {
+              display: none; /* Initially hide the div */
+              background-color: var(--bodyB);
+              width: 100%;
+              height: 100%;
+              overflow-y: auto; /* Enable vertical scrolling for the content inside the div */
+          }
+  
+          /* Style for the "Back" button */
+          #backButton {
+              display: none; /* Initially hide the button */
+          }
+    
+   a:link, a:visited, a:hover, a:active{
+      text-decoration:none !important;
+    } 
+   
+  .codingtab {
+      display: grid;
+      grid-template-columns: 15% 70% 15%; /* Set the desired column widths */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      align-items: center;
+      margin: 0px;
+      padding: 0px;
+      justify-content: center;
+      align-items: center;
+      background: var(--topbar-bg);
+      box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+    }
+    
+    .codingtab .btn-container {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-right: 1px solid #ccc;
+  }
+  
+  .codingtab .btn-container:last-child {
+    border-right: none; /* Remove border-right for the last container */
+  }
+     
+    .codingtab label {
+      color: var(--topbar-active-txt-color);
+      transition: all .5s ease;
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+      width: 25%;
+      text-align: center;
+      margin: 0 2px;
+    }
+  
+    .codingtab label:hover {
+      background: var(--topbar-hover-bg-color);
+      color: var(--topbar-hover-txt-color);
+    }
+    .codingtab label.active {
+      height: 100%;
+      background: var(--topbar-active-bg-color);
+      color: var(--topbar-active-txt-color);
+      border-radius: 5px;
+    }
+  
+  /* Styling for the modals */
+.modalContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background: var(--topbar-bg);
+  box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Styling for the close button */
+.closeModalButton {
+   box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+      padding: 5px;
+      border-radius: 5px;
+      position: relative;
+      top: 10px;
+      right: 10px;
+}
+  
+    /* Set media queries to change column layout based on screen size */
+  @media screen and (min-width: 641px) {
+    .codingtab {
+      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
+    }
+    
+  }
+    
+  @media screen and (min-width: 768px) {
+    .codingtab {
+      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
+    }
+
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .codingtab {
+      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
+    }
+    
+  }
+    
+  @media screen and (min-width: 1600px) {
+    .codingtab {
+      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
+    }
+    
+   }
+    
+  .container {
+      height: 100%;
+      width: 100%;
+      min-height: 600px;
+  }
+  
+  .editor-control {
+      height: 34px;
+      width: 100%;
+  }
+  
+  .btn-group-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 0px 5px 0px 5px;
+  }
+  
+  .btn {
+      padding: 6px 12px;
+      color: var(--topbar-active-color);
+      transition: all .5s ease;
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      vertical-align: middle;
+      outline: none;
+      box-shadow: none;
+      cursor: pointer;
+      white-space: nowrap;
+  }
+    
+    .btn:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none!important;
+    }
+  
+  .btn:hover {
+      background: var(--topbar-hover);
+      color: var(--topbar-hover-color);
+  }
+  
+  .editor-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .editor {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 95px;
+      left: 0;
+      right: 20px;
+      z-index:1;
+      margin: 6px 5px 0px 5px;
+  }
+    
+  .editor.active {
+      display: block;
+    }
+  
+  .editor > .header {
+  color: var(--text-color);
+  padding: 5px 10px;
+  font-weight: 700;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 59px;
+  z-index: 1;
+  background: var(--topbar-bg);
+  box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+  transition: 0.5s;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+}
+
+.editor > .header .header-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor > .header .header-btn input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  color: var(--topbar-active-color);
+  transition: all .5s ease;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin: auto 5px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  outline: none;
+  box-shadow: none;
+}
+
+  
+  .editor > .ftr {
+      color: var(--topbar-active-color);
+      padding: 5px 10px;
+      font-weight: 350;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background: var(--topbar-bg);
+      box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+      transition: 0.5s;
+  }
+  
+  .editor > .ftr > p {
+      display: contents;
+      color: var(--topbar-hover-color);
+  }
+  
+  #editorHTML, #editorCSS, #editorJS {
+      display: block;
+      line-height: 1.5;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 95px;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+     z-index:1;
+      font-size: 100%;
+      overflow-y: auto;
+      transition: 0.5s;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+  }
+    
+  .output-container {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          right: 0;
+      }
+      
+      #output {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          right: 0;
+          overflow-y: auto;
+      }
+    
+  
+  input[type="checkbox"] {
+      cursor: pointer;
+  }
+    
+  .wlc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; 
+    }
+    
+  .wlc-content {
+    text-align: center;
+    }
+  
+  </style>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css'>
+  <body class="dark">
+    <div class="wlc-container">
+      <div class="wlc-content">
+        <h2>Geeklinx Live Code Editor: Streamlined Coding Experience in Real-Time</h2>
+        <p>Boost your productivity with features like code highlighting, intelligent autocompletion, and instant feedback, all within a single, user-friendly interface. </p>
+        <button class="button" onclick="showFullScreen()">Try it! &nbsp; <svg class='line' viewBox='0 0 24 24'>
+            <g transform='translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)'>
+              <line x1='6.7743' x2='6.7743' y1='15.7501' y2='0.7501' />
+              <path d='M12.7988,9.6998 C12.7988,9.6998 9.5378,15.7498 6.7758,15.7498 C4.0118,15.7498 0.7498,9.6998 0.7498,9.6998' />
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="fullScreenDiv">
+      <input checked="checked" class="hidden" id="htmlbox" name="radio" type="radio" />
+      <input class="hidden" id="cssbox" name="radio" type="radio" />
+      <input class="hidden" id="jsbox" name="radio" type="radio" />
+      <input class="hidden" id="outPut" name="radio" type="radio" />
+      
+      <div class="codingtab">
+        <div class="btn-container first-btn-container">
+          <button type="button" class="btn" id="backButton" onclick="goBack()">
+            <svg class='line' viewBox='0 0 24 24'>
+              <g transform='translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)'>
+                <line x1='6.7743' x2='6.7743' y1='15.7501' y2='0.7501' />
+                <path d='M12.7988,9.6998 C12.7988,9.6998 9.5378,15.7498 6.7758,15.7498 C4.0118,15.7498 0.7498,9.6998 0.7498,9.6998' />
+              </g>
+            </svg></button>
+        </div>
+        <div class="btn-container second-btn-container">
+          <label for="htmlbox">HTML</label>
+          <label for="cssbox">CSS</label>
+          <label for="jsbox">JS</label>
+          <label for="outPut"><svg class='line' viewBox='0 0 24 24'><path d='M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42004 13.98 8.42004 12C8.42004 10.02 10.02 8.42004 12 8.42004C13.98 8.42004 15.58 10.02 15.58 12Z'></path><path d='M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39997C18.82 5.79997 15.53 3.71997 12 3.71997C8.46997 3.71997 5.17997 5.79997 2.88997 9.39997C1.98997 10.81 1.98997 13.18 2.88997 14.59C5.17997 18.19 8.46997 20.27 12 20.27Z'></path></svg></label>
+        </div>
+        <div class="btn-container third-btn-container">
+         <button type="button" class="btn openModalButton" data-modal="modal1"><svg class='line' viewBox='0 0 24 24'><path d='M5 10H7C9 10 10 9 10 7V5C10 3 9 2 7 2H5C3 2 2 3 2 5V7C2 9 3 10 5 10Z' stroke-miterlimit='10'></path><path d='M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z' stroke-miterlimit='10'></path><path d='M17 22H19C21 22 22 21 22 19V17C22 15 21 14 19 14H17C15 14 14 15 14 17V19C14 21 15 22 17 22Z' stroke-miterlimit='10'></path><path d='M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z' stroke-miterlimit='10'></path></svg></button>
+        </div>
+      </div>
+      <div class="container py-3">
+  <div class="editor-container">
+                  <div class="editor editor-html">
+                      <div class="header">HTML
+                        <div class="header-btn">
+                          <input type="button" value="Undo" onClick='ace.edit("editorHTML").execCommand("undo");' title="undo">
+        <input type="button" value="Redo" onClick='ace.edit("editorHTML").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorHTML").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorHTML").execCommand("replace");' title="search and replace">
+                        </div>
+                      </div>
+                      <div id="editorHTML"></div>
+                      <div class="ftr">Line <p class="m-0" id="lineHTML"></p>, Column <p class="m-0" id="colHTML"></p></div>
+                  </div>
+          
+                  <div class="editor editor-css">
+                      <div class="header">CSS
+                        <div class="header-btn">
+                        <input type="button" value="Undo" onClick='ace.edit("editorCSS").execCommand("undo");' title="undo">
+        <input type="button" value="Redo" onClick='ace.edit("editorCSS").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorCSS").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorCSS").execCommand("replace");' title="search and replace">
+                        </div>
+                        </div>
+                      <div id="editorCSS"></div>
+                      <div class="ftr">Line <p class="m-0" id="lineCSS"></p>, Column <p class="m-0" id="colCSS"></p></div>
+                  </div>
+       
+                  <div class="editor editor-js">
+                      <div class="header">JS
+                        <div class="header-btn">
+                        <input type="button" value="Undo" onClick='ace.edit("editorJS").execCommand("undo");' title="undo">
+        <input type="button" value="Redo" onClick='ace.edit("editorJS").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorJS").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorJS").execCommand("replace");' title="search and replace">
+                        </div>
+                        </div>
+                      <div id="editorJS"></div>
+                      <div class="ftr">Line <p class="m-0" id="lineJS"></p>, Column <p class="m-0" id="colJS"></p></div>
+                  </div>
+          </div>
+      
+          <div class="output-container">
+                  <div class="editor outPut">
+                      <iframe id="output"></iframe>
+                  </div>
+          </div>
+        </div>
+      
+    <div id="modal1" class="modalContainer">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <table class="w-100">
+       <tr>
+      <td><input type="file" id="code-input" class="d-none" onchange="openFile(this)">
+          <button type="button" id="open-file" class="btn" title="Open file" onclick="document.getElementById('code-input').click()">
+            <svg class='line' viewBox='0 0 24 24'>
+<g transform='translate(2.500000, 2.500000)'>
+<line class='svgC' x1='6.6787' x2='12.4937' y1='12.0742685' y2='12.0742685'/>
+<path d='M-1.13686838e-13,5.29836453 C-1.13686838e-13,2.85645977 1.25,0.75931691 3.622,0.272650243 C5.993,-0.214968804 7.795,-0.0463973758 9.292,0.761221672 C10.79,1.56884072 10.361,2.76122167 11.9,3.63645977 C13.44,4.51265024 15.917,3.19645977 17.535,4.94217405 C19.229,6.7697931 19.2200005,9.57550739 19.2200005,11.3640788 C19.2200005,18.1602693 15.413,18.6993169 9.61,18.6993169 C3.807,18.6993169 -1.13686838e-13,18.2288407 -1.13686838e-13,11.3640788 L-1.13686838e-13,5.29836453 Z'/>
+</g>
+</svg>
+      </button></td><td><label for="open-file" class="btnName">Open File</label></td></tr>
+        <tr>
+          <td><button type="button" id="save-file" class="btn" title="Save file" onclick="saveFilesAsZip()">
+            <svg class='line' viewBox='0 0 24 24'><path d='M22 2L13.8 10.2'></path><path d='M13 6.17004V11H17.83'></path><path d='M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13'></path></svg>
+          </button></td><td><label for="save-file" class="btnName">Save as Zip</label></td></tr>
+       <tr>
+          <td> <button type="button" id="save-changes" class="btn" onclick="saveDataToLocalStorage()"><svg class='line' viewBox='0 0 24 24'><path d='M12.89 5.87988H5.10999C3.39999 5.87988 2 7.27987 2 8.98987V20.3499C2 21.7999 3.04 22.4199 4.31 21.7099L8.23999 19.5199C8.65999 19.2899 9.34 19.2899 9.75 19.5199L13.68 21.7099C14.95 22.4199 15.99 21.7999 15.99 20.3499V8.98987C16 7.27987 14.6 5.87988 12.89 5.87988Z'></path><path d='M16 8.98987V20.3499C16 21.7999 14.96 22.4099 13.69 21.7099L9.76001 19.5199C9.34001 19.2899 8.65999 19.2899 8.23999 19.5199L4.31 21.7099C3.04 22.4099 2 21.7999 2 20.3499V8.98987C2 7.27987 3.39999 5.87988 5.10999 5.87988H12.89C14.6 5.87988 16 7.27987 16 8.98987Z'></path><path d='M22 5.10999V16.47C22 17.92 20.96 18.53 19.69 17.83L16 15.77V8.98999C16 7.27999 14.6 5.88 12.89 5.88H8V5.10999C8 3.39999 9.39999 2 11.11 2H18.89C20.6 2 22 3.39999 22 5.10999Z'></path></svg></button></td><td><label for="save-changes" class="btnName">Save Changes</label></td></tr>
+       <tr>
+          <td><button type="button" id="load-previous" class="btn" onclick="loadDataFromLocalStorage()"><svg class='line' viewBox='0 0 24 24'><path d='M8.11003 11.85C5.29003 12.05 5.30003 16.15 8.11003 16.35H14.78C15.59 16.36 16.37 16.05 16.97 15.51C18.95 13.78 17.8901 10.31 15.2901 9.98001C14.3601 4.34001 6.21006 6.48 8.14006 11.85' stroke-miterlimit='10'></path><path d='M2 15C2 18.87 5.13 22 9 22L7.95001 20.25'></path><path d='M22 9C22 5.13 18.87 2 15 2L16.05 3.75'></path></svg></button></td><td><label for="load-previous" class="btnName">Load Previous</label></td></tr>
+        
+         <tr>
+          <td><button type="button" class="dark-light btn openModalButton" data-modal="modal2" title="Change Theme">
+            <svg class='line' viewBox='0 0 24 24'>
+<g class='d1'>
+<path class='f' d='M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z'/>
+<path class='svgC' d='M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z' stroke-width='2'/>
+</g>
+</svg>
+          </button></td><td><label for="change-theme" class="btnName">Change Theme</label></td></tr>
+          <tr>
+          <td><button type="button" id="info" class="btn" title="Info">
+            <svg class='line' viewBox='0 0 24 24'><path d='M10.75 2.44995C11.45 1.85995 12.58 1.85995 13.26 2.44995L14.84 3.79995C15.14 4.04995 15.71 4.25995 16.11 4.25995H17.81C18.87 4.25995 19.74 5.12995 19.74 6.18995V7.88995C19.74 8.28995 19.95 8.84995 20.2 9.14995L21.55 10.7299C22.14 11.4299 22.14 12.5599 21.55 13.2399L20.2 14.8199C19.95 15.1199 19.74 15.6799 19.74 16.0799V17.7799C19.74 18.8399 18.87 19.7099 17.81 19.7099H16.11C15.71 19.7099 15.15 19.9199 14.85 20.1699L13.27 21.5199C12.57 22.1099 11.44 22.1099 10.76 21.5199L9.18001 20.1699C8.88001 19.9199 8.31 19.7099 7.92 19.7099H6.17C5.11 19.7099 4.24 18.8399 4.24 17.7799V16.0699C4.24 15.6799 4.04 15.1099 3.79 14.8199L2.44 13.2299C1.86 12.5399 1.86 11.4199 2.44 10.7299L3.79 9.13995C4.04 8.83995 4.24 8.27995 4.24 7.88995V6.19995C4.24 5.13995 5.11 4.26995 6.17 4.26995H7.9C8.3 4.26995 8.86 4.05995 9.16 3.80995L10.75 2.44995Z'></path><path d='M12 8.13V12.96'></path><path d='M11.9945 16H12.0035'></path></svg>
+          </button></td><td><label for="info" class="btnName">Info</label></td></tr>
+          <tr>
+          <td><button type="button" id="settings" class="btn" title="Setting" onclick="showModal()">
+            <svg class='line svg-1' viewBox='0 0 24 24'>
+<g transform='translate(3.500000, 2.500000)'>
+<path class='svgC' d='M8.5,7 C9.88088012,7 11,8.11911988 11,9.5 C11,10.8808801 9.88088012,12 8.5,12 C7.11911988,12 6,10.8808801 6,9.5 C6,8.11911988 7.11911988,7 8.5,7 Z'/>
+<path d='M16.6680023,4.75024695 L16.6680023,4.75024695 C15.9844554,3.55799324 14.4712377,3.15003899 13.2885153,3.83852352 C12.2597626,4.43613205 10.9740669,3.68838056 10.9740669,2.49217572 C10.9740669,1.11619444 9.86587758,0 8.4997646,0 L8.4997646,0 C7.13365161,0 6.02546233,1.11619444 6.02546233,2.49217572 C6.02546233,3.68838056 4.73976662,4.43613205 3.71199461,3.83852352 C2.52829154,3.15003899 1.01507378,3.55799324 0.331526939,4.75024695 C-0.351039204,5.94250065 0.053989269,7.46664934 1.23769234,8.15414609 C2.26546435,8.7527424 2.26546435,10.2472576 1.23769234,10.8458539 C0.053989269,11.5343384 -0.351039204,13.0584871 0.331526939,14.2497531 C1.01507378,15.4420068 2.52829154,15.849961 3.71101391,15.1624643 L3.71199461,15.1624643 C4.73976662,14.5638679 6.02546233,15.3116194 6.02546233,16.5078243 L6.02546233,16.5078243 C6.02546233,17.8838056 7.13365161,19 8.4997646,19 L8.4997646,19 C9.86587758,19 10.9740669,17.8838056 10.9740669,16.5078243 L10.9740669,16.5078243 C10.9740669,15.3116194 12.2597626,14.5638679 13.2885153,15.1624643 C14.4712377,15.849961 15.9844554,15.4420068 16.6680023,14.2497531 C17.3515491,13.0584871 16.9455399,11.5343384 15.7628176,10.8458539 L15.7618369,10.8458539 C14.7340648,10.2472576 14.7340648,8.7527424 15.7628176,8.15414609 C16.9455399,7.46664934 17.3515491,5.94250065 16.6680023,4.75024695 Z'/>
+</g>
+</svg>
+          </button></td><td><label for="settings" class="btnName">Settings</label></td></tr>
+      </table>
+      
+    </div>
+  </div>
+      
+      
+      <div id="modal2" class="modalContainer">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <div class="dark-mode-toggle">
+    <button id="darkmode-toggle" aria-label="Toggle Dark Mode">
+      <i class="fas fa-sun"></i> <!-- Font Awesome sun icon for light mode -->
+      <i class="fas fa-moon"></i> <!-- Font Awesome moon icon for dark mode -->
+    </button>
+  </div>
+        </div>
+      </div>
+         
+           
+      
+      <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="settingModalLabel">Editor Setting</h5>
+            </div>
+            <div class="modal-body">
+              <table class="w-100">
+                <tr>
+                  <td class="fw-bold">Font Size (px)</td>
+                  <td>
+                    <input type="number" id="setting-font" class="text-center" min="10" value="14">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Soft Tabs</td>
+                  <td>
+                    <input type="number" id="setting-tab" class="text-center" value="4">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Highlight Active Line</td>
+                  <td>
+                    <input type="checkbox" id="setting-highlight" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Show Gutter</td>
+                  <td>
+                    <input type="checkbox" id="setting-gutter" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Show Line Numbers</td>
+                  <td>
+                    <input type="checkbox" id="setting-linenumber" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">Live Autocompletion</td>
+                  <td>
+                    <input type="checkbox" id="setting-autocompletion" checked>
+                  </td>
+                </tr>
+      
+              </table>
+              <button type="button" class="btn close" onclick="closeModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-keybinding_menu.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-prompt.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/mode-c_cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/worker-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/worker-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/worker-css.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ace.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/mode-html.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/mode-css.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/mode-javascript.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/theme-tomorrow_night_bright.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ext-language_tools.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/snippets/html.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/snippets/css.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/snippets/javascript.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-searchbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/worker-base.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-beautify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-settings_menu.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-keybinding_menu.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.8.0/ext-spellcheck.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js'></script>
+  <script src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
+  <!-- Make sure to include the JSZip library -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+      
+      <script>
+      function saveFilesAsZip() {
+        // Get the values from the editors
+        var htmlContent = EditorHTML.getValue();
+        var cssContent = EditorCSS.getValue();
+        var jsContent = EditorJS.getValue();
+        var readmeContent = "This file is downloaded from www.geeklinx.in";
+      
+        // Create a new JSZip instance
+        var zip = new JSZip();
+      
+        // Add the files to the zip
+        zip.file("index.html", htmlContent);
+        zip.file("style.css", cssContent);
+        zip.file("script.js", jsContent);
+        zip.file("readme.txt", readmeContent);
+      
+        // Generate the zip content asynchronously
+        zip.generateAsync({ type: "blob" })
+          .then(function (content) {
+            // Use the traditional way to create a blob URL
+            var blobURL = window.URL.createObjectURL(content);
+      
+            // Create a download link for the zip file
+            var element = document.createElement("a");
+            element.href = blobURL;
+            element.download = "files.zip";
+            element.style.display = "none";
+      
+            // Append the link to the document and click it to trigger the download
+            document.body.appendChild(element);
+            element.click();
+      
+            // Clean up after the download is complete
+            document.body.removeChild(element);
+      
+            // Release the blob URL
+            window.URL.revokeObjectURL(blobURL);
+          });
+      }
+      </script>
+
+<!--Modal-->
+<script>
+  // Get references to all buttons that open modals
+const openModalButtons = document.querySelectorAll('.openModalButton');
+
+// Function to open the modal
+function openModal(event) {
+  const modalId = event.currentTarget.getAttribute('data-modal');
+  const modalContainer = document.getElementById(modalId);
+  modalContainer.style.display = 'flex';
+}
+
+// Function to close the modal when clicking outside
+function closeModalOutside(event) {
+  if (event.target.classList.contains('modalContainer')) {
+    event.target.style.display = 'none';
+  }
+}
+
+// Attach event listeners to open buttons
+openModalButtons.forEach((button) => {
+  button.addEventListener('click', openModal);
+});
+
+// Attach event listener to the document to handle outside clicks
+document.addEventListener('click', closeModalOutside);
+
+</script>
+
+      <script>
+              // Function to show the full-screen div
+              function showFullScreen() {
+                  var fullScreenDiv = document.getElementById('fullScreenDiv');
+                  var backButton = document.getElementById('backButton');
+      
+                  // Show the full-screen div
+                  fullScreenDiv.style.display = 'block';
+      
+                  // Show the "Back" button
+                  backButton.style.display = 'block';
+      
+                  // Request full-screen mode
+                  if (fullScreenDiv.requestFullscreen) {
+                      fullScreenDiv.requestFullscreen();
+                  } else if (fullScreenDiv.mozRequestFullScreen) { /* Firefox */
+                      fullScreenDiv.mozRequestFullScreen();
+                  } else if (fullScreenDiv.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                      fullScreenDiv.webkitRequestFullscreen();
+                  } else if (fullScreenDiv.msRequestFullscreen) { /* IE/Edge */
+                      fullScreenDiv.msRequestFullscreen();
+                  }
+      
+                  // Add an event listener to detect exiting full-screen mode
+                  document.addEventListener('fullscreenchange', handleFullScreenExit);
+                  document.addEventListener('webkitfullscreenchange', handleFullScreenExit);
+                  document.addEventListener('mozfullscreenchange', handleFullScreenExit);
+                  document.addEventListener('MSFullscreenChange', handleFullScreenExit);
+              }
+      
+              // Function to handle exiting full-screen mode
+              function handleFullScreenExit() {
+                  var fullScreenDiv = document.getElementById('fullScreenDiv');
+                  var backButton = document.getElementById('backButton');
+      
+                  if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                      // If not in full-screen mode, hide the div and "Back" button
+                      fullScreenDiv.style.display = 'none';
+                      backButton.style.display = 'none';
+      
+                      // Remove the event listeners to prevent multiple bindings
+                      document.removeEventListener('fullscreenchange', handleFullScreenExit);
+                      document.removeEventListener('webkitfullscreenchange', handleFullScreenExit);
+                      document.removeEventListener('mozfullscreenchange', handleFullScreenExit);
+                      document.removeEventListener('MSFullscreenChange', handleFullScreenExit);
+                  }
+              }
+      
+              // Function to exit full-screen mode and hide the div
+              function goBack() {
+                  var fullScreenDiv = document.getElementById('fullScreenDiv');
+                  var backButton = document.getElementById('backButton');
+      
+                  if (document.exitFullscreen) {
+                      document.exitFullscreen();
+                  } else if (document.mozCancelFullScreen) { /* Firefox */
+                      document.mozCancelFullScreen();
+                  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                      document.webkitExitFullscreen();
+                  } else if (document.msExitFullscreen) { /* IE/Edge */
+                      document.msExitFullscreen();
+                  }
+              }
+          </script>
+      
+      <script>
+        /*<![CDATA[*/
+       document.addEventListener("DOMContentLoaded", function() {
+          // Get references to the radio buttons and editors
+          var htmlBox = document.getElementById("htmlbox");
+          var cssBox = document.getElementById("cssbox");
+          var jsBox = document.getElementById("jsbox");
+          var Output = document.getElementById("outPut");
+          var htmlEditor = document.querySelector(".editor-html");
+          var cssEditor = document.querySelector(".editor-css");
+          var jsEditor = document.querySelector(".editor-js");
+          var allOutput = document.querySelector(".outPut");
+      
+          // Add event listeners to the radio buttons
+          htmlBox.addEventListener("change", handleRadioChange);
+          cssBox.addEventListener("change", handleRadioChange);
+          jsBox.addEventListener("change", handleRadioChange);
+          Output.addEventListener("change", handleRadioChange);
+      
+          // Function to handle radio button change event
+          function handleRadioChange(event) {
+            var selectedBox = event.target;
+      
+            // Hide all editors
+            var editors = document.querySelectorAll(".editor");
+            editors.forEach(function(editor) {
+              editor.classList.remove("active");
+            });
+      
+            // Show the selected editor
+            if (selectedBox.id === "htmlbox") {
+              htmlEditor.classList.add("active");
+            } else if (selectedBox.id === "cssbox") {
+              cssEditor.classList.add("active");
+            } else if (selectedBox.id === "jsbox") {
+              jsEditor.classList.add("active");
+            } else if (selectedBox.id === "outPut") {
+              allOutput.classList.add("active");
+            }
+          }
+      
+          // Initially show the HTML editor and hide others
+          htmlEditor.classList.add("active");
+          cssEditor.classList.remove("active");
+          jsEditor.classList.remove("active");
+          allOutput.classList.remove("active");
+        });
+        /*]]>*/
+      </script>
+      <script>
+             $(document).ready(function () {
+          $('.codingtab label:first-child').addClass("active"); // Add "active" class to the first child initially
+      
+          $('.codingtab label').click(function () {
+              $('.codingtab label').removeClass("active");
+              $(this).addClass("active");
+          });
+      });
+      </script>
+      <!--Local storage-->
+<script>
+  function saveDataToLocalStorage() {
+  const htmlContent = EditorHTML.getValue();
+  const jsContent = EditorJS.getValue();
+  const cssContent = EditorCSS.getValue();
+
+  localStorage.setItem('htmlContent', htmlContent);
+  localStorage.setItem('jsContent', jsContent);
+  localStorage.setItem('cssContent', cssContent);
+
+  console.log('Data saved to local storage.');
+}
+
+  
+function loadDataFromLocalStorage() {
+  const htmlContent = localStorage.getItem('htmlContent');
+  const jsContent = localStorage.getItem('jsContent');
+  const cssContent = localStorage.getItem('cssContent');
+
+  if (htmlContent) {
+    EditorHTML.setValue(htmlContent);
+  }
+
+  if (jsContent) {
+    EditorJS.setValue(jsContent);
+  }
+
+  if (cssContent) {
+    EditorCSS.setValue(cssContent);
+  }
+
+  console.log('Data loaded from local storage.');
+}
+
+</script>
+      <script>
+        const body = $("body");
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) { return new bootstrap.Tooltip(tooltipTriggerEl); });
+      
+      //https://cdnjs.com/libraries/ace/1.9.6
+      var EditorHTML = ace.edit("editorHTML");
+      var langTools = ace.require("ace/ext/language_tools");
+      EditorHTML.setTheme("ace/theme/tomorrow_night_bright");
+      EditorHTML.session.setMode("ace/mode/html");
+      EditorHTML.setFontSize("14px");
+      EditorHTML.session.setTabSize(4);
+      EditorHTML.setHighlightActiveLine(true);
+      EditorHTML.setShowPrintMargin(true);
+      EditorHTML.setOptions({copyWithEmptySelection: false, showGutter: true, showLineNumbers: true, enableBasicAutocompletion: true, enableSnippets: true, enableLiveAutocompletion: true});
+      EditorHTML.setValue('<!-- Write HTML code here...-->\r\n\r\<h1>Hello, World!</h1>\r\n<p>This is paragraph</p>\r\n', 1);
+      
+      $('#lineHTML').text(EditorHTML.getCursorPosition().row + 1);
+      $('#colHTML').text(EditorHTML.getCursorPosition().column + 1);
+        
+      // 코드 편집기에서 입력 시
+      EditorHTML.on('input', function(delta) {
+          var cursorPos = EditorHTML.getCursorPosition();
+          $('#lineHTML').text(cursorPos.row + 1);
+          $('#colHTML').text(cursorPos.column + 1);
+      });
+        
+      //https://cdnjs.com/libraries/ace/1.9.6
+      var EditorCSS = ace.edit("editorCSS");
+      var langTools = ace.require("ace/ext/language_tools");
+      EditorCSS.setTheme("ace/theme/tomorrow_night_bright");
+      EditorCSS.session.setMode("ace/mode/css");
+      EditorCSS.setFontSize("14px");
+      EditorCSS.session.setTabSize(4);
+      EditorCSS.setHighlightActiveLine(true);
+      EditorCSS.setShowPrintMargin(true);
+      EditorCSS.setOptions({copyWithEmptySelection: false, showGutter: true, showLineNumbers: true, enableBasicAutocompletion: true, enableSnippets: true, enableLiveAutocompletion: true});
+      EditorCSS.setValue('/* Write CSS code here...*/\r\n\r\h1 {\r\n  color: red;\r\n\r\   }', 1);
+      
+      $('#lineCSS').text(EditorCSS.getCursorPosition().row + 1);
+      $('#colCSS').text(EditorCSS.getCursorPosition().column + 1);
+      
+      // 코드 편집기에서 입력 시
+      EditorCSS.on('input', function(delta) {
+          var cursorPos = EditorCSS.getCursorPosition();
+          $('#lineCSS').text(cursorPos.row + 1);
+          $('#colCSS').text(cursorPos.column + 1);
+      });
+      
+      //https://cdnjs.com/libraries/ace/1.9.6
+      var EditorJS = ace.edit("editorJS");
+      var langTools = ace.require("ace/ext/language_tools");
+      EditorJS.setTheme("ace/theme/tomorrow_night_bright");
+      EditorJS.session.setMode("ace/mode/javascript");
+      EditorJS.setFontSize("14px");
+      EditorJS.session.setTabSize(4);
+      EditorJS.setHighlightActiveLine(true);
+      EditorJS.setShowPrintMargin(true);
+      EditorJS.setOptions({copyWithEmptySelection: false, showGutter: true, showLineNumbers: true, enableBasicAutocompletion: true, enableSnippets: true, enableLiveAutocompletion: true});
+      EditorJS.setValue('<!-- Write HTML code here...-->\r\n\r\<h1>Hello, World!</h1>\r\n<p>This is paragraph</p>\r\n', 1);
+      
+      $('#lineJS').text(EditorJS.getCursorPosition().row + 1);
+      $('#colJS').text(EditorJS.getCursorPosition().column + 1);
+        
+      // 코드 편집기에서 입력 시
+      EditorJS.on('input', function(delta) {
+          var cursorPos = EditorJS.getCursorPosition();
+          $('#lineJS').text(cursorPos.row + 1);
+          $('#colJS').text(cursorPos.column + 1);
+      });
+        
+      //prepare/refresh iframe
+      function updIframe() {
+        //$('#output').attr('src', "")
+        $('#output').contents().find('html head').append('<style></style>');
+       //alert($('#output').contents().find('html').html());//
+      };
+      
+      //prepare/update html
+      function updHTML() {
+        editorContentsHTML = EditorHTML.getValue();
+        $('#output').contents().find('body').html(editorContentsHTML);
+      }
+      //prepare/update css
+      function updCSS() {
+        editorContentsCSS = EditorCSS.getValue();
+        $('#output').contents().find('head style').html(editorContentsCSS);
+      }
+      
+      function updJS() {
+        updIframe();
+          updHTML();
+           updCSS();
+        
+        editorContentsJS = EditorJS.getValue();
+        $('#output').contents().find('body').append('<script>' + editorContentsJS + '<\/script>');
+      }
+      
+      //update iframe on first run
+      updIframe();
+      
+      //on editor change update
+      EditorHTML.getSession().on('change', function(e) { updHTML() });
+      EditorCSS.getSession().on('change', function(e) { updCSS() });
+      EditorJS.getSession().on('change', function(e) { updJS() });
+        
+        
+      // 파일 업로드 시
+      function openFile(e) {
+  const file = e.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    const fileContent = event.target.result;
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+
+    switch (fileExtension) {
+      case 'html':
+        EditorHTML.setValue(fileContent);
+        break;
+      case 'css':
+        EditorCSS.setValue(fileContent);
+        break;
+      case 'js':
+        EditorJS.setValue(fileContent);
+        break;
+      default:
+        console.log('Unsupported file type.');
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+      
+      // 테마 토글 버튼 클릭 시
+      $("#theme-toggle").on('click', function() {
+          body.toggleClass('dark');
+      
+          if (body.hasClass('dark')) {
+              $("#theme-icon").removeClass('fa-moon');
+              $("#theme-icon").addClass('fa-sun');
+              EditorHTML.setTheme("ace/theme/tomorrow_night_bright");
+          } else {
+              $("#theme-icon").removeClass('fa-sun');
+              $("#theme-icon").addClass('fa-moon');
+              EditorHTML.setTheme("ace/theme/textmate");
+          }
+      });
+      
+      // 설정 모달 클릭 시
+      function showModal() { $("#settingModal").modal('show'); }
+      function closeModal() { $("#settingModal").modal('hide'); }
+      
+      // 에디터 설정 값 변경 시
+      $("#setting-font").on('input', function() { EditorHTML.setFontSize($(this).val() + "px"); });
+      $("#setting-tab").on('input', function() { EditorHTML.session.setTabSize($(this).val()); });
+      $("#setting-highlight").change(function() { EditorHTML.setHighlightActiveLine(this.checked); });
+      $("#setting-gutter").change(function() { EditorHTML.setOptions({showGutter: this.checked}); });
+      $("#setting-linenumber").change(function() { EditorHTML.setOptions({showLineNumbers: this.checked}); });
+      $("#setting-autocompletion").change(function() { EditorHTML.setOptions({enableBasicAutocompletion: !this.checked, enableSnippets: this.checked, enableLiveAutocompletion: this.checked}); });
+      </script>
