@@ -1,114 +1,148 @@
 <style> 
   .light {
-     --topbar-bg: #fdfdfd;
-     --topbar-alt-bg: #f2f2f2;
-      --topbar-hover-bg-color: #f2f2f2;
-      --topbar-active-bg-color: #c9c9c9	;
-      --topbar-active-txt-color: #fff;
-      --topbar-hover-txt-color: #787878;
-    
-      
-  }
-  
-  :root {
-     --topbar-bg: #000;
-     --topbar-alt-bg: #333336;
-      --topbar-hover-bg-color: #1f1e1c;
-      --topbar-active-bg-color: #353432;
-      --topbar-active-txt-color: #fff;
-      --topbar-hover-txt-color: #fbfbfd;
-    
-  }
-  
- /* Hide the moon icon by default */
+  --topbar-bg: #fdfdfd;
+  --topbar-alt-bg: #f2f2f2;
+  --topbar-hover-bg-color: #f2f2f2;
+  --topbar-active-bg-color: #c9c9c9;
+  --topbar-active-txt-color: #fff;
+  --topbar-hover-txt-color: #787878;
+}
+
+:root {
+  --topbar-bg: #202d3b;
+  --topbar-alt-bg: #293848;
+
+  --active-text: #ffffff;
+  --inactive-text: #ced7e2;
+
+  --secondary: #485769;
+  --secondary-transparent: rgba(32, 45, 59, 0.2);
+
+  --primary: #5b96d5;
+  --primary-light: #bdd5ee;
+  --primary-transparent: rgba(91, 150, 213, 0.5);
+  --primary-transparent-alt: rgba(91, 150, 213, 0.03);
+}
+
+.ace_content {
+  z-index: 1;
+}
+
+#fullScreenDiv svg.line {
+  stroke: var(--inactive-text);
+}
+
+#fullScreenDiv svg.line:hover {
+  stroke: var(--active-text);
+}
+
+/* Hide the moon icon by default */
 #theme-toggle .sun {
-  display: none;
+  display: inline;
 }
 
 /* Style for the moon icon when in dark mode */
 body.light #theme-toggle .sun {
-  display: inline;
-}
-  
-  body.light #theme-toggle .moon {
   display: none;
+}
+
+body.light #theme-toggle .moon {
+  display: inline;
 }
 
 /* Additional style for the sun icon when in light mode */
 body:not(.light) #theme-toggle .moon {
-  display: inline;
+  display: none;
 }
-    
-  /* Some styles for the div in full-screen mode */
-          #fullScreenDiv {
-              display: none; /* Initially hide the div */
-              background-color: var(--bodyB);
-              width: 100%;
-              height: 100%;
-              overflow-y: auto; /* Enable vertical scrolling for the content inside the div */
-          }
-  
-          /* Style for the "Back" button */
-          #backButton {
-              display: none; /* Initially hide the button */
-          }
-    
-   a:link, a:visited, a:hover, a:active{
-      text-decoration:none !important;
-    } 
-   
-  .codingtab {
-      display: grid;
-      grid-template-columns: 15% 70% 15%; /* Set the desired column widths */
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      right: 0;
-      align-items: center;
-      margin: 0px;
-      padding: 0px;
-      justify-content: center;
-      align-items: center;
-      background: var(--topbar-bg);
-    }
-    
-    .codingtab .btn-container {
-    flex: 1;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-right: 1px solid #ccc;
-  }
-  
-  .codingtab .btn-container:last-child {
-    border-right: none; /* Remove border-right for the last container */
-  }
-     
-    .codingtab label {
-      color: var(--topbar-active-txt-color);
-      transition: all .5s ease;
-      border-radius: 5px;
-      padding: 5px;
-      cursor: pointer;
-      width: 25%;
-      text-align: center;
-      margin: 0 2px;
-    }
-  
-    .codingtab label:hover {
-      background: var(--topbar-hover-bg-color);
-      color: var(--topbar-hover-txt-color);
-    }
-    .codingtab label.active {
-      height: 100%;
-      background: var(--topbar-active-bg-color);
-      color: var(--topbar-active-txt-color);
-      border-radius: 5px;
-    }
-  
-  /* Styling for the modals */
+
+/* Some styles for the div in full-screen mode */
+#fullScreenDiv {
+  display: none; /* Initially hide the div */
+  background-color: var(--bodyB);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling for the content inside the div */
+}
+
+/* Style for the "Back" button */
+#backButton {
+  display: none; /* Initially hide the button */
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none !important;
+}
+
+.codingtab {
+  display: grid;
+  grid-template-columns: 15% 70% 15%; /* Set the desired column widths */
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--secondary);
+}
+
+.codingtab .btn-container {
+  flex: 1;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-right: 1px solid var(--secondary);
+  color: var(--inactive-text);
+  background-clip: border-box;
+  transform: scale3d(1, 1, 1);
+}
+
+.codingtab .btn-container:last-child {
+  border-right: none; /* Remove border-right for the last container */
+}
+
+.codingtab label {
+  color: var(--inactive-text);
+  background: var(--secondary-transparent);
+  transition: 0.15s ease-in-out background-color;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+  margin: 0 2px;
+  border: 1px solid var(--secondary);
+}
+
+.codingtab label:hover {
+  color: var(--primary-light);
+  background: var(--primary-transparent-alt);
+}
+.codingtab label.active {
+  height: 100%;
+  background: linear-gradient(
+      180deg,
+      rgba(113, 164, 230, 0) 0%,
+      rgba(113, 164, 230, 0.15) 100%
+    ),
+    rgba(113, 164, 230, 0.15) !important;
+  border-color: var(--primary);
+  color: var(--active-text) !important;
+  z-index: 2;
+  cursor: default;
+  border-radius: 5px;
+}
+
+/* Styling for the modals */
 .modalContainer {
   display: none;
   position: fixed;
@@ -117,135 +151,210 @@ body:not(.light) #theme-toggle .moon {
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
   justify-content: center;
 }
 
 .modalContent {
   background: var(--topbar-bg);
-  box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.07);
   padding: 20px;
   border-radius: 5px;
+  color: var(--inactive-text);
+}
+  
+.modalContent input {
+  outline: none !important;
+  box-shadow: none !important;
+  background: var(--topbar-bg);
+  border: 1px solid var(--secondary);
+  padding: auto 5px;
+  border-radius: 5px;
+  }
+  
+.modalContent input:hover {
+  color: var(--primary-light);
+  background: var(--primary-transparent-alt);
+}
+  
+#modal6 {
+  z-index: 1;
+  }
+  
+ /* Style for the input arrows */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none; /* Remove default appearance for WebKit-based browsers */
+      margin: 0; /* Remove default margin */
+    }
+
+    /* Style for Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield; /* Override default appearance for Firefox */
+    }
+
+  
+.modalContent input:focus {
+  background: linear-gradient(
+      180deg,
+      rgba(113, 164, 230, 0) 0%,
+      rgba(113, 164, 230, 0.15) 100%
+    ),
+    rgba(113, 164, 230, 0.15) !important;
+  border-color: var(--primary);
+  color: var(--active-text) !important;
+}
+
+.modalContent div.dark-mode-toggle svg.line {
+  margin-right: 8px;
+}
+
+.modalContent .btn p {
+  color: var(--inactive-text);
+}
+  
+.modalContent label {
+  margin: auto 5px;
+  color: var(--inactive-text);
+}
+
+.modalContent label:hover {
+  color: var(--primary-light);
+}
+
+.modalContent label:focus {
+  color: var(--active-text);
 }
 
 /* Styling for the close button */
 .closeModalButton {
-   box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
-      padding: 5px;
-      border-radius: 5px;
-      position: relative;
-      top: 10px;
-      right: 10px;
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.07);
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  top: 10px;
+  right: 10px;
+  color: var(--inactive-text);
 }
-  
-    /* Set media queries to change column layout based on screen size */
-  @media screen and (min-width: 641px) {
-    .codingtab {
-      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
-    }
-    
-  }
-    
-  @media screen and (min-width: 768px) {
-    .codingtab {
-      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
-    }
 
+/* Set media queries to change column layout based on screen size */
+@media screen and (min-width: 641px) {
+  .codingtab {
+    grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
   }
-  
-  @media screen and (min-width: 1024px) {
-    .codingtab {
-      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
-    }
-    
+}
+
+@media screen and (min-width: 768px) {
+  .codingtab {
+    grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
   }
-    
-  @media screen and (min-width: 1600px) {
-    .codingtab {
-      grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
-    }
-    
-   }
-    
-  .container {
-      height: 100%;
-      width: 100%;
-      min-height: 600px;
+}
+
+@media screen and (min-width: 1024px) {
+  .codingtab {
+    grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
   }
-  
-  .editor-control {
-      height: 34px;
-      width: 100%;
+}
+
+@media screen and (min-width: 1600px) {
+  .codingtab {
+    grid-template-columns: 15% 70% 15%; /* Adjust columns for larger screens */
   }
-  
-  .btn-group-container {
-      display: flex;
-      justify-content: space-between;
-      margin: 0px 5px 0px 5px;
-  }
-  
-  .btn {
-      padding: 6px 12px;
-      color: var(--topbar-active-color);
-      transition: all .5s ease;
-      border-radius: 5px;
-      padding: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 400;
-      text-align: center;
-      vertical-align: middle;
-      outline: none;
-      box-shadow: none;
-      cursor: pointer;
-      white-space: nowrap;
-  }
-    
-    .btn:focus {
-      outline: none !important;
-      box-shadow: none !important;
-      -webkit-box-shadow: none!important;
-    }
-  
-  .btn:hover {
-      background: var(--topbar-hover);
-      color: var(--topbar-hover-color);
-  }
-  
-  .editor-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .editor {
-      display: none;
-      height: 100%;
-      width: 100%;
-      position: fixed;
-      top: 95px;
-      left: 0;
-      right: 20px;
-      z-index:1;
-      margin: 6px 5px 0px 5px;
-  }
-    
-  .editor.active {
-      display: block;
-    }
-  
-  .editor > .header {
-  color: var(--text-color);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
+}
+
+.editor-control {
+  height: 34px;
+  width: 100%;
+}
+
+.btn-group-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 5px 0px 5px;
+}
+
+.btn {
+  padding: 6px 12px;
+  background-color: $dark-four;
+  color: var(--inactive-text);
+  transition: all 0.5s ease;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  outline: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn .btn-primary {
+}
+
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: linear-gradient(
+      180deg,
+      rgba(113, 164, 230, 0) 0%,
+      rgba(113, 164, 230, 0.15) 100%
+    ),
+    rgba(113, 164, 230, 0.15) !important;
+  border-color: var(--primary);
+  color: var(--active-text) !important;
+}
+
+.btn:hover {
+  color: var(--primary-light);
+  background: var(--primary-transparent-alt);
+}
+
+.editor-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 20px;
+  z-index: 1;
+  margin: 6px 5px 0px 5px;
+}
+
+.editor.active {
+  display: block;
+}
+
+.editor > .header {
+  color: var(--inactive-text);
   padding: 5px 10px;
   font-weight: 700;
   position: fixed;
   left: 0;
   right: 0;
-  top: 59px;
+  top: 50px;
   z-index: 1;
+  height: 50px;
   background: var(--topbar-alt-bg);
+  border-bottom: 1px solid var(--secondary);
   transition: 0.5s;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -264,7 +373,7 @@ body:not(.light) #theme-toggle .moon {
   align-items: center;
   padding: 6px 12px;
   color: var(--topbar-active-color);
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
@@ -276,79 +385,87 @@ body:not(.light) #theme-toggle .moon {
   box-shadow: none;
 }
 
-  
-  .editor > .ftr {
-      color: var(--topbar-active-color);
-      padding: 5px 10px;
-      font-weight: 350;
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      background: var(--topbar-bg);
-      box-shadow: 0 5px 35px rgba(0, 0, 0, .07);
-      transition: 0.5s;
-  }
-  
-  .editor > .ftr > p {
-      display: contents;
-      color: var(--topbar-hover-color);
-  }
-  
-  #editorHTML, #editorCSS, #editorJS {
-      display: block;
-      line-height: 1.5;
-      height: 100%;
-      width: 100%;
-      position: fixed;
-      top: 95px;
-      left: 0;
-      right: 0;
-      bottom: 20px;
-     z-index:1;
-      font-size: 100%;
-      overflow-y: auto;
-      transition: 0.5s;
-      border-left: 1px solid var(--border-color);
-      border-right: 1px solid var(--border-color);
-  }
-    
-  .output-container {
-          width: 100%;
-          height: 100%;
-          position: fixed;
-          top: 60px;
-          left: 0;
-          right: 0;
-      }
-      
-      #output {
-          height: 100%;
-          width: 100%;
-          display: flex;
-          position: fixed;
-          top: 60px;
-          left: 0;
-          right: 0;
-          overflow-y: auto;
-      }
-    
-  
-  input[type="checkbox"] {
-      cursor: pointer;
-  }
-    
-  .wlc-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px; 
-    }
-    
-  .wlc-content {
-    text-align: center;
-    }
+.editor > .ftr {
+  color: var(--active-text);
+  padding: 5px 10px;
+  font-weight: 350;
+  height: 25px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-top: var(--border-main);
+  background: var(--topbar-bg);
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.07);
+  transition: 0.5s;
+}
+
+.editor > .ftr > p {
+  display: contents;
+  font-size: 16px;
+  color: var(--inactive-text);
+}
+
+#editorHTML,
+#editorCSS,
+#editorJS {
+  display: block;
+  line-height: 1.5;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 25px;
+  z-index: 1;
+  font-size: 100%;
+  overflow-y: auto;
+  transition: 0.5s;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.output-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+}
+
+#output {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+}
+
+.codingtab input[type="button"] {
+  background-color: var(--topbar-active-color);
+}
+
+.codingtab input[type="radio"] {
+  cursor: pointer;
+}
+
+.wlc-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.wlc-content {
+  text-align: center;
+}
+
   
   </style>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'>
@@ -368,10 +485,10 @@ body:not(.light) #theme-toggle .moon {
       </div>
     </div>
     <div id="fullScreenDiv">
-      <input checked="checked" class="hidden" id="htmlbox" name="radio" type="radio" />
-      <input class="hidden" id="cssbox" name="radio" type="radio" />
-      <input class="hidden" id="jsbox" name="radio" type="radio" />
-      <input class="hidden" id="outPut" name="radio" type="radio" />
+      <input checked="checked" class="hidden codeIn" id="htmlbox" name="radio" type="radio" />
+      <input class="hidden codeIn" id="cssbox" name="radio" type="radio" />
+      <input class="hidden codeIn" id="jsbox" name="radio" type="radio" />
+      <input class="hidden codeIn" id="outPut" name="radio" type="radio" />
       
       <div class="codingtab">
         <div class="btn-container first-btn-container">
@@ -398,34 +515,65 @@ body:not(.light) #theme-toggle .moon {
                   <div class="editor editor-html">
                       <div class="header">HTML
                         <div class="header-btn">
-                          <input type="button" value="Undo" onClick='ace.edit("editorHTML").execCommand("undo");' title="undo">
-        <input type="button" value="Redo" onClick='ace.edit("editorHTML").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorHTML").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorHTML").execCommand("replace");' title="search and replace">
+                          <button type="button" class="btn" onclick="selectAllText('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M22 5.14999V7.85001C22 10.1 21.1 11 18.85 11H16.15C13.9 11 13 10.1 13 7.85001V5.14999C13 2.89999 13.9 2 16.15 2H18.85C21.1 2 22 2.89999 22 5.14999Z'></path><path d='M11 16.15V18.85C11 21.1 10.1 22 7.85 22H5.15C2.9 22 2 21.1 2 18.85V16.15C2 13.9 2.9 13 5.15 13H7.85C10.1 13 11 13.9 11 16.15Z'></path><path d='M17.38 11.0001V13.6201C17.38 16.3101 16.31 17.3801 13.62 17.3801H11V16.1501C11 13.9001 10.1 13.0001 7.85 13.0001H6.62V10.3801C6.62 7.69013 7.69 6.62012 10.38 6.62012H13V7.85013C13 10.1001 13.9 11.0001 16.15 11.0001H17.38Z'></path></svg></button>
+  <button type="button" class="btn" onclick="copyText('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z'/><path d='M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z'/></svg></button>
+  <button type="button" class="btn" onclick="pasteText('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z' stroke-miterlimit='10'></path><path d='M14 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002' stroke-miterlimit='10'></path><path d='M16 4.02002C19.33 4.20002 21 5.43002 21 10V15' stroke-miterlimit='10'></path><path d='M21 19V22H18' stroke-miterlimit='10'></path><path d='M15 16L20.96 21.96' stroke-miterlimit='10'></path></svg></button>
+  <button type="button" class="btn" onclick="cutText('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M5.5 10C7.433 10 9 8.433 9 6.5C9 4.567 7.433 3 5.5 3C3.567 3 2 4.567 2 6.5C2 8.433 3.567 10 5.5 10Z'></path><path d='M5.5 21C7.433 21 9 19.433 9 17.5C9 15.567 7.433 14 5.5 14C3.567 14 2 15.567 2 17.5C2 19.433 3.567 21 5.5 21Z'></path><path d='M22 6L8.64999 15.98'></path><path d='M22 17.97L8.64999 7.97998'></path></svg></button>
+                          
+                          <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("undo");' title="undo"><svg class='line' viewBox='0 0 24 24'><path d='M7.12988 18.3101H15.1299C17.8899 18.3101 20.1299 16.0701 20.1299 13.3101C20.1299 10.5501 17.8899 8.31006 15.1299 8.31006H4.12988' stroke-miterlimit='10'></path><path d='M6.43012 10.8099L3.87012 8.24994L6.43012 5.68994'></path></svg></button>
+        <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("redo");' title="redo"><svg class='line' viewBox='0 0 24 24'><path d='M16.8701 18.3101H8.87012C6.11012 18.3101 3.87012 16.0701 3.87012 13.3101C3.87012 10.5501 6.11012 8.31006 8.87012 8.31006H19.8701' stroke-miterlimit='10'></path><path d='M17.5701 10.8099L20.1301 8.24994L17.5701 5.68994'></path></svg></button>
+        <button class="font-size-btn btn" type="button" onclick="increaseFontSize('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path><path d='M12 15.5V8.5' stroke-miterlimit='10'></path></svg></button>
+  <button class="font-size-btn btn" type="button" onclick="decreaseFontSize('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path></svg></button>
+          <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("find");' title="search"><svg class='line' viewBox='0 0 24 24'><path d='M14 5H20'></path><path d='M14 8H17'></path><path d='M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2'></path><path d='M22 22L20 20'></path></svg></button>
+          <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("replace");' title="search and replace"><svg class='line' viewBox='0 0 24 24'><path d='M14 3L16.44 5.34003L8.48999 5.32001C4.91999 5.32001 1.98999 8.25003 1.98999 11.84C1.98999 13.63 2.71998 15.26 3.89998 16.44'></path><path d='M10.0001 21.0001L7.56006 18.66L15.5101 18.6801C19.0801 18.6801 22.0101 15.75 22.0101 12.16C22.0101 10.37 21.2801 8.74006 20.1001 7.56006'></path><path d='M9 12H15'></path></svg></button>
+           <button type="button" class="btn openModalButton" data-modal="modal3" title="Goto Line number"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
+                         
                         </div>
                       </div>
                       <div id="editorHTML"></div>
-                      <div class="ftr">Line <p class="m-0" id="lineHTML"></p>, Column <p class="m-0" id="colHTML"></p></div>
+                      <div class="ftr">Ln <p class="m-0" id="lineHTML"></p>, Col <p class="m-0" id="colHTML"></p></div>
                   </div>
           
                   <div class="editor editor-css">
                       <div class="header">CSS
                         <div class="header-btn">
-                        <input type="button" value="Undo" onClick='ace.edit("editorCSS").execCommand("undo");' title="undo">
-        <input type="button" value="Redo" onClick='ace.edit("editorCSS").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorCSS").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorCSS").execCommand("replace");' title="search and replace">
+                          
+                         <button type="button" class="btn" onclick="selectAllText('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M22 5.14999V7.85001C22 10.1 21.1 11 18.85 11H16.15C13.9 11 13 10.1 13 7.85001V5.14999C13 2.89999 13.9 2 16.15 2H18.85C21.1 2 22 2.89999 22 5.14999Z'></path><path d='M11 16.15V18.85C11 21.1 10.1 22 7.85 22H5.15C2.9 22 2 21.1 2 18.85V16.15C2 13.9 2.9 13 5.15 13H7.85C10.1 13 11 13.9 11 16.15Z'></path><path d='M17.38 11.0001V13.6201C17.38 16.3101 16.31 17.3801 13.62 17.3801H11V16.1501C11 13.9001 10.1 13.0001 7.85 13.0001H6.62V10.3801C6.62 7.69013 7.69 6.62012 10.38 6.62012H13V7.85013C13 10.1001 13.9 11.0001 16.15 11.0001H17.38Z'></path></svg></button>
+  <button type="button" class="btn" onclick="copyText('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z'/><path d='M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z'/></svg></button>
+  <button type="button" class="btn" onclick="pasteText('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z' stroke-miterlimit='10'></path><path d='M14 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002' stroke-miterlimit='10'></path><path d='M16 4.02002C19.33 4.20002 21 5.43002 21 10V15' stroke-miterlimit='10'></path><path d='M21 19V22H18' stroke-miterlimit='10'></path><path d='M15 16L20.96 21.96' stroke-miterlimit='10'></path></svg></button>
+  <button type="button" class="btn" onclick="cutText('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M5.5 10C7.433 10 9 8.433 9 6.5C9 4.567 7.433 3 5.5 3C3.567 3 2 4.567 2 6.5C2 8.433 3.567 10 5.5 10Z'></path><path d='M5.5 21C7.433 21 9 19.433 9 17.5C9 15.567 7.433 14 5.5 14C3.567 14 2 15.567 2 17.5C2 19.433 3.567 21 5.5 21Z'></path><path d='M22 6L8.64999 15.98'></path><path d='M22 17.97L8.64999 7.97998'></path></svg></button> 
+                        <button type="button" class="btn" onClick='ace.edit("editorCSS").execCommand("undo");' title="undo"><svg class='line' viewBox='0 0 24 24'><path d='M7.12988 18.3101H15.1299C17.8899 18.3101 20.1299 16.0701 20.1299 13.3101C20.1299 10.5501 17.8899 8.31006 15.1299 8.31006H4.12988' stroke-miterlimit='10'></path><path d='M6.43012 10.8099L3.87012 8.24994L6.43012 5.68994'></path></svg></button>
+        <button type="button" class="btn" onClick='ace.edit("editorCSS").execCommand("redo");' title="redo"><svg class='line' viewBox='0 0 24 24'><path d='M16.8701 18.3101H8.87012C6.11012 18.3101 3.87012 16.0701 3.87012 13.3101C3.87012 10.5501 6.11012 8.31006 8.87012 8.31006H19.8701' stroke-miterlimit='10'></path><path d='M17.5701 10.8099L20.1301 8.24994L17.5701 5.68994'></path></svg></button>
+          <button class="font-size-btn btn" type="button" onclick="increaseFontSize('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path><path d='M12 15.5V8.5' stroke-miterlimit='10'></path></svg></button>
+  <button class="font-size-btn btn" type="button" onclick="decreaseFontSize('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path></svg></button>
+          <button type="button" class="btn" onClick='ace.edit("editorCSS").execCommand("find");' title="search"><svg class='line' viewBox='0 0 24 24'><path d='M14 5H20'></path><path d='M14 8H17'></path><path d='M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2'></path><path d='M22 22L20 20'></path></svg></button>
+            <button type="button" class="btn" onClick='ace.edit("editorCSS").execCommand("replace");' title="search and replace"><svg class='line' viewBox='0 0 24 24'><path d='M14 3L16.44 5.34003L8.48999 5.32001C4.91999 5.32001 1.98999 8.25003 1.98999 11.84C1.98999 13.63 2.71998 15.26 3.89998 16.44'></path><path d='M10.0001 21.0001L7.56006 18.66L15.5101 18.6801C19.0801 18.6801 22.0101 15.75 22.0101 12.16C22.0101 10.37 21.2801 8.74006 20.1001 7.56006'></path><path d='M9 12H15'></path></svg></button>
+             <button type="button" class="btn openModalButton" data-modal="modal4" title="Goto Line number"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
                         </div>
                         </div>
                       <div id="editorCSS"></div>
-                      <div class="ftr">Line <p class="m-0" id="lineCSS"></p>, Column <p class="m-0" id="colCSS"></p></div>
+                      <div class="ftr">Ln <p class="m-0" id="lineCSS"></p>, Col <p class="m-0" id="colCSS"></p></div>
                   </div>
        
                   <div class="editor editor-js">
                       <div class="header">JS
                         <div class="header-btn">
-                        <input type="button" value="Undo" onClick='ace.edit("editorJS").execCommand("undo");' title="undo">
-        <input type="button" value="Redo" onClick='ace.edit("editorJS").execCommand("redo");' title="redo"><input type="button" value="Search" onClick='ace.edit("editorJS").execCommand("find");' title="search"> <input type="button" value="Replace" onClick='ace.edit("editorJS").execCommand("replace");' title="search and replace">
+                          
+                         <button type="button" class="btn" onclick="selectAllText('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M22 5.14999V7.85001C22 10.1 21.1 11 18.85 11H16.15C13.9 11 13 10.1 13 7.85001V5.14999C13 2.89999 13.9 2 16.15 2H18.85C21.1 2 22 2.89999 22 5.14999Z'></path><path d='M11 16.15V18.85C11 21.1 10.1 22 7.85 22H5.15C2.9 22 2 21.1 2 18.85V16.15C2 13.9 2.9 13 5.15 13H7.85C10.1 13 11 13.9 11 16.15Z'></path><path d='M17.38 11.0001V13.6201C17.38 16.3101 16.31 17.3801 13.62 17.3801H11V16.1501C11 13.9001 10.1 13.0001 7.85 13.0001H6.62V10.3801C6.62 7.69013 7.69 6.62012 10.38 6.62012H13V7.85013C13 10.1001 13.9 11.0001 16.15 11.0001H17.38Z'></path></svg></button>
+  <button type="button" class="btn" onclick="copyText('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z'/><path d='M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z'/></svg></button>
+  <button type="button" class="btn" onclick="pasteText('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z' stroke-miterlimit='10'></path><path d='M14 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002' stroke-miterlimit='10'></path><path d='M16 4.02002C19.33 4.20002 21 5.43002 21 10V15' stroke-miterlimit='10'></path><path d='M21 19V22H18' stroke-miterlimit='10'></path><path d='M15 16L20.96 21.96' stroke-miterlimit='10'></path></svg></button>
+  <button type="button" class="btn" onclick="cutText('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M5.5 10C7.433 10 9 8.433 9 6.5C9 4.567 7.433 3 5.5 3C3.567 3 2 4.567 2 6.5C2 8.433 3.567 10 5.5 10Z'></path><path d='M5.5 21C7.433 21 9 19.433 9 17.5C9 15.567 7.433 14 5.5 14C3.567 14 2 15.567 2 17.5C2 19.433 3.567 21 5.5 21Z'></path><path d='M22 6L8.64999 15.98'></path><path d='M22 17.97L8.64999 7.97998'></path></svg></button>
+                        <button type="button" class="btn" onClick='ace.edit("editorJS").execCommand("undo");' title="undo"><svg class='line' viewBox='0 0 24 24'><path d='M7.12988 18.3101H15.1299C17.8899 18.3101 20.1299 16.0701 20.1299 13.3101C20.1299 10.5501 17.8899 8.31006 15.1299 8.31006H4.12988' stroke-miterlimit='10'></path><path d='M6.43012 10.8099L3.87012 8.24994L6.43012 5.68994'></path></svg></button>
+        <button type="button" class="btn" onClick='ace.edit("editorJS").execCommand("redo");' title="redo"><svg class='line' viewBox='0 0 24 24'><path d='M16.8701 18.3101H8.87012C6.11012 18.3101 3.87012 16.0701 3.87012 13.3101C3.87012 10.5501 6.11012 8.31006 8.87012 8.31006H19.8701' stroke-miterlimit='10'></path><path d='M17.5701 10.8099L20.1301 8.24994L17.5701 5.68994'></path></svg></button>
+          <button class="font-size-btn btn" type="button" onclick="increaseFontSize('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path><path d='M12 15.5V8.5' stroke-miterlimit='10'></path></svg></button>
+  <button class="font-size-btn btn" type="button" onclick="decreaseFontSize('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'></path><path d='M8.5 12H15.5' stroke-miterlimit='10'></path></svg></button>
+          <button type="button" class="btn" onClick='ace.edit("editorJS").execCommand("find");' title="search"><svg class='line' viewBox='0 0 24 24'><path d='M14 5H20'></path><path d='M14 8H17'></path><path d='M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2'></path><path d='M22 22L20 20'></path></svg></button>
+          <button type="button" class="btn" onClick='ace.edit("editorJS").execCommand("replace");' title="search and replace"><svg class='line' viewBox='0 0 24 24'><path d='M14 3L16.44 5.34003L8.48999 5.32001C4.91999 5.32001 1.98999 8.25003 1.98999 11.84C1.98999 13.63 2.71998 15.26 3.89998 16.44'></path><path d='M10.0001 21.0001L7.56006 18.66L15.5101 18.6801C19.0801 18.6801 22.0101 15.75 22.0101 12.16C22.0101 10.37 21.2801 8.74006 20.1001 7.56006'></path><path d='M9 12H15'></path></svg></button>
+           <button type="button" class="btn openModalButton" data-modal="modal5" title="Goto Line number"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
                         </div>
                         </div>
                       <div id="editorJS"></div>
-                      <div class="ftr">Line <p class="m-0" id="lineJS"></p>, Column <p class="m-0" id="colJS"></p></div>
+                      <div class="ftr">Ln <p class="m-0" id="lineJS"></p>, Col <p class="m-0" id="colJS"></p></div>
                   </div>
           </div>
       
@@ -460,7 +608,7 @@ body:not(.light) #theme-toggle .moon {
           <td><button type="button" id="load-previous" class="btn" onclick="loadDataFromLocalStorage()"><svg class='line' viewBox='0 0 24 24'><path d='M8.11003 11.85C5.29003 12.05 5.30003 16.15 8.11003 16.35H14.78C15.59 16.36 16.37 16.05 16.97 15.51C18.95 13.78 17.8901 10.31 15.2901 9.98001C14.3601 4.34001 6.21006 6.48 8.14006 11.85' stroke-miterlimit='10'></path><path d='M2 15C2 18.87 5.13 22 9 22L7.95001 20.25'></path><path d='M22 9C22 5.13 18.87 2 15 2L16.05 3.75'></path></svg></button></td><td><label for="load-previous" class="btnName">Load Previous</label></td></tr>
         
          <tr>
-          <td><button type="button" class="dark-light btn openModalButton" data-modal="modal2" title="Change Theme">
+          <td><button type="button" id="change-theme" class="dark-light btn openModalButton" data-modal="modal2" title="Change Theme">
             <svg class='line' viewBox='0 0 24 24'>
 <g class='d1'>
 <path class='f' d='M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z'/>
@@ -481,33 +629,71 @@ body:not(.light) #theme-toggle .moon {
 </g>
 </svg>
           </button></td><td><label for="settings" class="btnName">Settings</label></td></tr>
+        <tr><td><button onclick="generateSharingLink()" class="openModalButton" data-modal="modal6">Generate Sharing Link</button></td></tr>
       </table>
       
     </div>
   </div>
       
+      <!-- Modal container -->
+  <div id="modal6" class="modalContainer" style="display: none;">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <!-- Popup div to show the shortened link -->
+      <div id="sharingLinkContainer" style="display: none;">
+    <p>Sharing Link:</p>
+    <input type="text" id="sharingLink" readonly>
+    <button onclick="copyLink()">Copy</button>
+  </div>
+    </div>
+  </div>
       
       <div id="modal2" class="modalContainer">
     <!-- Modal box -->
     <div class="modalContent">
       <div class="dark-mode-toggle">
-    <button id="theme-toggle" aria-label="Toggle Light Mode">
+       <table>
+         <tr>
+   <td> <button id="theme-toggle" aria-label="Toggle Light Mode" class="btn" type="button">
       <svg class='line sun' viewBox='0 0 24 24'>
 <g class='d1'>
 <path class='f' d='M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z'/>
 <path class='svgC' d='M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z' stroke-width='2'/>
-        </g></svg>
-      <svg class='line moon' viewBox='0 0 24 24'>
-      <g class='d2'>
-<path d='M183.72453,170.371a10.4306,10.4306,0,0,1-.8987,3.793,11.19849,11.19849,0,0,1-5.73738,5.72881,10.43255,10.43255,0,0,1-3.77582.89138,1.99388,1.99388,0,0,0-1.52447,3.18176,10.82936,10.82936,0,1,0,15.118-15.11819A1.99364,1.99364,0,0,0,183.72453,170.371Z' transform='translate(-169.3959 -166.45548)'/>
-</g>
-</svg>
-    </button>
+        </g></svg><p class="sun">Light Mode</p>
+      <svg class='line moon' viewBox='0 0 24 24'><path d='M2.03009 12.42C2.39009 17.57 6.76009 21.76 11.9901 21.99C15.6801 22.15 18.9801 20.43 20.9601 17.72C21.7801 16.61 21.3401 15.87 19.9701 16.12C19.3001 16.24 18.6101 16.29 17.8901 16.26C13.0001 16.06 9.00009 11.97 8.98009 7.13996C8.97009 5.83996 9.24009 4.60996 9.73009 3.48996C10.2701 2.24996 9.62009 1.65996 8.37009 2.18996C4.41009 3.85996 1.70009 7.84996 2.03009 12.42Z'></path></svg><p class="moon">Dark Mode</p>
+     </button></td>
+         </tr>
+        </table>
   </div>
         </div>
       </div>
+      
+      <div id="modal3" class="modalContainer">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <label for="lineNumberHTML">Go to line: </label>
+<input type="number" id="lineNumberHTML" min="1" max="100000">
+<button class="btn" type="button" onclick="gotoLine('editorHTML')"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
+        </div>
+      </div>
          
-           
+            <div id="modal4" class="modalContainer">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <label for="lineNumberCSS">Go to line: </label>
+<input type="number" id="lineNumberCSS" min="1" max="100000">
+<button class="btn" type="button" onclick="gotoLine('editorCSS')"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
+        </div>
+      </div>
+      
+       <div id="modal5" class="modalContainer">
+    <!-- Modal box -->
+    <div class="modalContent">
+      <label for="lineNumberJS">Go to line: </label>
+<input type="number" id="lineNumberJS" min="1" max="100000">
+<button class="btn" type="button" onclick="gotoLine('editorJS')"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
+        </div>
+      </div>
       
       <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -986,4 +1172,127 @@ function loadDataFromLocalStorage() {
       $("#setting-gutter").change(function() { EditorHTML.setOptions({showGutter: this.checked}); });
       $("#setting-linenumber").change(function() { EditorHTML.setOptions({showLineNumbers: this.checked}); });
       $("#setting-autocompletion").change(function() { EditorHTML.setOptions({enableBasicAutocompletion: !this.checked, enableSnippets: this.checked, enableLiveAutocompletion: this.checked}); });
+        
+        // Functions to change font size
+    function changeFontSize(editorId, change) {
+      var editor = ace.edit(editorId);
+      var currentFontSize = parseInt(editor.getFontSize(), 10);
+      var newFontSize = currentFontSize + change;
+      editor.setFontSize(newFontSize + "px");
+    }
+
+    function increaseFontSize(editorId) {
+      changeFontSize(editorId, 2);
+    }
+
+    function decreaseFontSize(editorId) {
+      changeFontSize(editorId, -2);
+    }
+        
+    function gotoLine(editorId) {
+  var editor = ace.edit(editorId);
+  var lineNumberInputId = "lineNumber" + editorId.slice(6); // Get the corresponding line number input ID
+  var lineNumber = document.getElementById(lineNumberInputId).value;
+
+  if (!isNaN(lineNumber) && lineNumber > 0) {
+    // Go to the specified line (subtract 1 because Ace Editor uses 0-based indexing for lines)
+    editor.gotoLine(lineNumber, 0, true);
+  }
+}
+        
+        // Function to select all text in the editor
+    function selectAllText(editorId) {
+      var editor = ace.edit(editorId);
+      editor.selectAll();
+    }
+
+    // Function to copy selected text to clipboard
+    function copyText(editorId) {
+      var editor = ace.edit(editorId);
+      var selectedText = editor.getSelectedText();
+      if (selectedText) {
+        navigator.clipboard.writeText(selectedText);
+      }
+    }
+
+    // Function to paste text from clipboard
+    function pasteText(editorId) {
+      var editor = ace.edit(editorId);
+      navigator.clipboard.readText().then(function (text) {
+        editor.insert(text);
+      });
+    }
+
+    // Function to cut selected text and copy it to clipboard
+    function cutText(editorId) {
+      var editor = ace.edit(editorId);
+      var selectedText = editor.getSelectedText();
+      if (selectedText) {
+        navigator.clipboard.writeText(selectedText);
+        editor.remove();
+      }
+    }
+        
+       
       </script>
+
+  <script>
+  // Function to generate the sharing link and display it
+    function generateSharingLink() {
+      var htmlContent = EditorHTML.getValue();
+      var cssContent = EditorCSS.getValue();
+      var jsContent = EditorJS.getValue();
+
+      // Encode the shared contents in the URL using base64
+      var encodedHTML = btoa(htmlContent);
+      var encodedCSS = btoa(cssContent);
+      var encodedJS = btoa(jsContent);
+
+      // Generate the sharing link with the encoded contents as query parameters
+      var sharingLink = "https://www.geeklinx.in/p/live-code-editor_15.html?" +
+                        "html=" + encodeURIComponent(encodedHTML) +
+                        "&css=" + encodeURIComponent(encodedCSS) +
+                        "&js=" + encodeURIComponent(encodedJS);
+
+      // Display the sharing link and "Copy" button on the page
+      var sharingLinkContainer = document.getElementById("sharingLinkContainer");
+      var sharingLinkInput = document.getElementById("sharingLink");
+      sharingLinkInput.value = sharingLink;
+      sharingLinkContainer.style.display = "block";
+    }
+
+    // Function to copy the link to clipboard
+    function copyLink() {
+      var linkInput = document.getElementById("sharingLink");
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand("copy");
+      alert("Link copied to clipboard!");
+    }
+  </script>
+ <script>
+    // Ace Editor setup (similar to the previous client-side code)
+
+    // Function to get the query parameters from the URL
+    function getQueryParams() {
+      var queryParams = {};
+      var search = window.location.search.substring(1);
+      var pairs = search.split("&");
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split("=");
+        queryParams[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      }
+      return queryParams;
+    }
+
+    // Get the shared contents from the URL
+    var queryParams = getQueryParams();
+    var htmlContent = queryParams.html ? atob(queryParams.html) : "";
+    var cssContent = queryParams.css ? atob(queryParams.css) : "";
+    var jsContent = queryParams.js ? atob(queryParams.js) : "";
+
+    // Set the shared contents in the respective Ace Editors
+    EditorHTML.setValue(htmlContent, 1);
+    EditorCSS.setValue(cssContent, 1);
+    EditorJS.setValue(jsContent, 1);
+  </script>
