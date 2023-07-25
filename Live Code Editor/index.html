@@ -22,10 +22,8 @@
   --primary-light: #bdd5ee;
   --primary-transparent: rgba(91, 150, 213, 0.5);
   --primary-transparent-alt: rgba(91, 150, 213, 0.03);
-}
-
-.ace_content {
-  z-index: 1;
+  
+  --font-small: 14px;
 }
 
 #fullScreenDiv svg.line {
@@ -85,7 +83,6 @@ a:active {
   top: 0;
   left: 0;
   right: 0;
-  align-items: center;
   margin: 0px;
   padding: 0px;
   justify-content: center;
@@ -320,11 +317,12 @@ a:active {
   background: var(--primary-transparent-alt);
 }
 
-.editor-container {
+#editor-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  
 }
 
 .editor {
@@ -333,10 +331,9 @@ a:active {
   width: 100%;
   position: fixed;
   top: 100px;
-  left: 0;
+  left: 50px;
   right: 20px;
   z-index: 1;
-  margin: 6px 5px 0px 5px;
 }
 
 .editor.active {
@@ -389,21 +386,21 @@ a:active {
   color: var(--active-text);
   padding: 5px 10px;
   font-weight: 350;
-  height: 25px;
+  height: 20px;
+  z-index: 1;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
-  border-top: var(--border-main);
   background: var(--topbar-bg);
-  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.07);
   transition: 0.5s;
+  display: flex; /* Add this line */
+  align-items: center; /* Add this line */
+  font-size: var(--font-small);
+  border-top: 1px solid var(--secondary);
 }
 
 .editor > .ftr > p {
-  display: contents;
-  font-size: 16px;
   color: var(--inactive-text);
 }
 
@@ -414,36 +411,26 @@ a:active {
   line-height: 1.5;
   height: 100%;
   width: 100%;
-  position: fixed;
+  /*position: fixed;
   top: 100px;
-  left: 0;
+  left: 50px;
   right: 0;
-  bottom: 25px;
+  bottom: 25px;*/
   z-index: 1;
   font-size: 100%;
   overflow-y: auto;
   transition: 0.5s;
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
 }
 
 .output-container {
   width: 100%;
   height: 100%;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
 }
 
 #output {
   height: 100%;
   width: 100%;
   display: flex;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
   overflow-y: auto;
 }
 
@@ -466,7 +453,121 @@ a:active {
   text-align: center;
 }
 
+  /* [+] SIDE NAV BAR [+] start */
+/* Styles for the vertical tabs */
+.vertical-tabs-container {
+  position: relative;
+  z-index: 1;
+}
+
+.vertical-tabs {
+  position: fixed;
+  left: 0; /* Adjust the left position as needed */
+  top: 100px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--inactive-text);
+  background: var(--topbar-bg);
+  border-right: 1px solid var(--secondary);
+  padding: 10px;
+  z-index: 1;
+  height: 100%;
+  width: 50px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid var(--secondary);
+}
+
+/* Styles for the tab content */
+.tab-content {
+  display: none;
+  padding: 10px;
+  position: fixed;
+  left: 50px;
+  top: 100px;
+  bottom: 0;
+  width: 150px;
+  align-items: center;
+  color: var(--inactive-text);
+  background: var(--topbar-alt-bg);
+  border-right: 1px solid var(--secondary);
+  z-index: 2;
+}
+  /* [+] SIDE NAV BAR [+] end */
   
+  #fullScreenDiv input {
+  outline: none !important;
+  box-shadow: none !important;
+  background: var(--topbar-bg);
+  border: 1px solid var(--secondary);
+  padding: 15px;
+  border-radius: 5px;
+  height: 20px;
+  width: 100%;
+  }
+  
+#fullScreenDiv input:hover {
+  color: var(--primary-light);
+  background: var(--primary-transparent-alt);
+}
+  
+#fullScreenDiv input:focus {
+  background: linear-gradient(
+      180deg,
+      rgba(113, 164, 230, 0) 0%,
+      rgba(113, 164, 230, 0.15) 100%
+    ),
+    rgba(113, 164, 230, 0.15) !important;
+  border-color: var(--primary);
+  color: var(--active-text) !important;
+}
+
+ #fullScreenDiv ul {
+    padding-left: 5px;
+    list-style: none;
+  }
+  
+  #fullScreenDiv ul li {
+      position: relative;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+      
+    #fullScreenDiv ul li:before {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 10px;
+        height: 1px;
+        margin: auto;
+        content: '';
+        background-color: #666;
+      }
+      
+      #fullScreenDiv ul li:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        content: '';
+        background-color: #666;
+      }
+      
+      #fullScreenDiv ul li:last-child:after {
+        height: 15px;
+      }
+    
   </style>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css'>
@@ -510,8 +611,41 @@ a:active {
          <button type="button" class="btn openModalButton" data-modal="modal1"><svg class='line' viewBox='0 0 24 24'><path d='M5 10H7C9 10 10 9 10 7V5C10 3 9 2 7 2H5C3 2 2 3 2 5V7C2 9 3 10 5 10Z' stroke-miterlimit='10'></path><path d='M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z' stroke-miterlimit='10'></path><path d='M17 22H19C21 22 22 21 22 19V17C22 15 21 14 19 14H17C15 14 14 15 14 17V19C14 21 15 22 17 22Z' stroke-miterlimit='10'></path><path d='M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z' stroke-miterlimit='10'></path></svg></button>
         </div>
       </div>
+      
+      <!-- [+] SIDE NAV BAR [+] start -->
+      <div class="vertical-tabs-container">
+  <div class="vertical-tabs">
+    <div class="tab">Tab 1</div>
+    <div class="tab">Tab 2</div>
+    <div class="tab">Tab 3</div>
+  </div>
+        
+  <div class="tab-content" id="tab1-content">
+    
+    <div id="file-tree">
+    <!-- The tree structure will be generated by JavaScript -->
+  </div>
+    <!-- Custom input box and button for folder name editing -->
+<div class="folder-name-editor" style="display: none;">
+  <input type="text" id="folder-name-input">
+  <button onclick="saveFolderName()">Save</button>
+</div>
+
+<!-- Custom input box and button for file name editing -->
+<div class="file-name-editor" style="display: none;">
+  <input type="text" class="file-name-input">
+  <button type="button" class="btn" onclick="saveFileName()">Save</button>
+</div>
+   
+  </div>
+  <div class="tab-content" id="tab2-content">Tab 2 Content</div>
+  <div class="tab-content" id="tab3-content">Tab 3 Content</div>
+</div>
+
+      <!-- [+] SIDE NAV BAR [+] end -->
+      
       <div class="container py-3">
-  <div class="editor-container">
+  <div class="editor-container" id="editor-container">
                   <div class="editor editor-html">
                       <div class="header">HTML
                         <div class="header-btn">
@@ -527,7 +661,8 @@ a:active {
           <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("find");' title="search"><svg class='line' viewBox='0 0 24 24'><path d='M14 5H20'></path><path d='M14 8H17'></path><path d='M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2'></path><path d='M22 22L20 20'></path></svg></button>
           <button type="button" class="btn" onClick='ace.edit("editorHTML").execCommand("replace");' title="search and replace"><svg class='line' viewBox='0 0 24 24'><path d='M14 3L16.44 5.34003L8.48999 5.32001C4.91999 5.32001 1.98999 8.25003 1.98999 11.84C1.98999 13.63 2.71998 15.26 3.89998 16.44'></path><path d='M10.0001 21.0001L7.56006 18.66L15.5101 18.6801C19.0801 18.6801 22.0101 15.75 22.0101 12.16C22.0101 10.37 21.2801 8.74006 20.1001 7.56006'></path><path d='M9 12H15'></path></svg></button>
            <button type="button" class="btn openModalButton" data-modal="modal3" title="Goto Line number"><svg class='line' viewBox='0 0 24 24'><path d='M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008' stroke-miterlimit='10'></path></svg></button>
-                         
+                         <input type="button" value="fold" onClick='ace.edit("editorHTML").execCommand("foldAllComments")' title="fold multiline comments">
+        <input type="button" value="unfold" onClick='ace.edit("editorHTML").execCommand("unfoldall")' title="unfoldall comments">
                         </div>
                       </div>
                       <div id="editorHTML"></div>
@@ -579,6 +714,7 @@ a:active {
       
           <div class="output-container">
                   <div class="editor outPut">
+                    <div class="header">Result</div>
                       <iframe id="output"></iframe>
                   </div>
           </div>
@@ -629,24 +765,11 @@ a:active {
 </g>
 </svg>
           </button></td><td><label for="settings" class="btnName">Settings</label></td></tr>
-        <tr><td><button onclick="generateSharingLink()" class="openModalButton" data-modal="modal6">Generate Sharing Link</button></td></tr>
       </table>
       
     </div>
   </div>
       
-      <!-- Modal container -->
-  <div id="modal6" class="modalContainer" style="display: none;">
-    <!-- Modal box -->
-    <div class="modalContent">
-      <!-- Popup div to show the shortened link -->
-      <div id="sharingLinkContainer" style="display: none;">
-    <p>Sharing Link:</p>
-    <input type="text" id="sharingLink" readonly>
-    <button onclick="copyLink()">Copy</button>
-  </div>
-    </div>
-  </div>
       
       <div id="modal2" class="modalContainer">
     <!-- Modal box -->
@@ -776,48 +899,255 @@ a:active {
   <!-- Make sure to include the JSZip library -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
       
-      <script>
-      function saveFilesAsZip() {
-        // Get the values from the editors
-        var htmlContent = EditorHTML.getValue();
-        var cssContent = EditorCSS.getValue();
-        var jsContent = EditorJS.getValue();
-        var readmeContent = "This file is downloaded from www.geeklinx.in";
-      
-        // Create a new JSZip instance
-        var zip = new JSZip();
-      
-        // Add the files to the zip
-        zip.file("index.html", htmlContent);
-        zip.file("style.css", cssContent);
-        zip.file("script.js", jsContent);
-        zip.file("readme.txt", readmeContent);
-      
-        // Generate the zip content asynchronously
-        zip.generateAsync({ type: "blob" })
-          .then(function (content) {
-            // Use the traditional way to create a blob URL
-            var blobURL = window.URL.createObjectURL(content);
-      
-            // Create a download link for the zip file
-            var element = document.createElement("a");
-            element.href = blobURL;
-            element.download = "files.zip";
-            element.style.display = "none";
-      
-            // Append the link to the document and click it to trigger the download
-            document.body.appendChild(element);
-            element.click();
-      
-            // Clean up after the download is complete
-            document.body.removeChild(element);
-      
-            // Release the blob URL
-            window.URL.revokeObjectURL(blobURL);
-          });
-      }
-      </script>
+<!-- [+] SIDE NAV BAR [+] start -->
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tab");
+    const tabContents = document.querySelectorAll(".tab-content");
+    const editors = document.querySelectorAll(".editor");
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        if (tabContents[index].style.display === "block") {
+          // If the content is visible, hide it
+          tabContents[index].style.display = "none";
+          editors.forEach((editor) => (editor.style.left = "50px")); // Reset the left position when content is hidden
+        } else {
+          // If the content is hidden, show it
+          // First, hide all tab contents
+          tabContents.forEach((content) => (content.style.display = "none"));
+          // Show the clicked tab's content
+          tabContents[index].style.display = "block";
+          editors.forEach((editor) => (editor.style.left = "200px")); // Adjust the left position as needed when content is shown
+        }
+      });
+    });
+
+    // Hide the tab content when clicking outside the container
+    document.addEventListener("click", (event) => {
+      const container = document.querySelector(".vertical-tabs-container");
+      if (!container.contains(event.target)) {
+        tabContents.forEach((content) => (content.style.display = "none"));
+        editors.forEach((editor) => (editor.style.left = "50px")); // Reset the left position when content is hidden
+      }
+    });
+  });
+</script>
+
+<!-- [+] SIDE NAV BAR [+] end -->
+<!-- [+] SAVE  FILE AS ZIP [+] start -->
+
+<script>
+// Store the folder name and file paths and their custom names in arrays of objects
+const folderData = { name: 'MyFiles' };
+const filesData = [
+  { path: 'index.html', customName: 'index.html' },
+  { path: 'style.css', customName: 'style.css' },
+  { path: 'script.js', customName: 'script.js' }
+];
+
+function openFile(e) {
+  const file = e.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    const fileContent = event.target.result;
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    let indexToUpdate = -1;
+
+    switch (fileExtension) {
+      case 'html':
+        EditorHTML.setValue(fileContent);
+        indexToUpdate = filesData.findIndex(fileData => fileData.path === 'index.html');
+        break;
+      case 'css':
+        EditorCSS.setValue(fileContent);
+        indexToUpdate = filesData.findIndex(fileData => fileData.path === 'style.css');
+        break;
+      case 'js':
+        EditorJS.setValue(fileContent);
+        indexToUpdate = filesData.findIndex(fileData => fileData.path === 'script.js');
+        break;
+      default:
+        console.log('Unsupported file type.');
+        return;
+    }
+
+    // If the corresponding default file name is found, update it with the uploaded file name
+    if (indexToUpdate !== -1) {
+      filesData[indexToUpdate].path = file.name;
+      filesData[indexToUpdate].customName = file.name;
+    } else {
+      // If not found, add the uploaded file name as a new file entry
+      filesData.push({ path: file.name, customName: file.name });
+    }
+
+    // Update the file tree with all the file paths in the array
+    updateFileTree();
+  };
+
+  reader.readAsText(file);
+}
+  
+ function updateFileTree() {
+  const fileTreeDiv = document.getElementById('file-tree');
+
+  // Clear previous content of the file tree
+  fileTreeDiv.innerHTML = '';
+
+  // Create the root element of the tree (root folder)
+  const rootNode = document.createElement('ul');
+  const rootFolderNode = document.createElement('li');
+  rootFolderNode.classList.add('folder');
+  rootNode.appendChild(rootFolderNode);
+
+  // Add folder icon and folder name
+  const folderSpan = document.createElement('span');
+  folderSpan.innerHTML = `
+    <i class="fas fa-folder"></i>
+    <span class="folder-name" onclick="showFolderNameEditor()">${folderData.name}</span>
+    <div class="folder-name-editor" style="display: none;">
+      <input type="text" id="folder-name-input">
+      <button type="button" class="btn" onclick="saveFolderName()">Save</button>
+    </div>`;
+  rootFolderNode.appendChild(folderSpan);
+
+  const filesList = document.createElement('ul');
+  rootFolderNode.appendChild(filesList);
+
+  for (let i = 0; i < filesData.length; i++) {
+    const fileData = filesData[i];
+
+    // Add a span for each file name (without the edit button)
+    const fileListItem = document.createElement('li');
+    fileListItem.classList.add('file');
+    fileListItem.innerHTML = `
+      <span class="file-name-span" data-index="${i}" onclick="showFileNameEditor(event)">${fileData.customName}</span>
+      <div class="file-name-editor" style="display: none;">
+        <input type="text" class="file-name-input" value="${fileData.customName}" data-index="${i}">
+        <button type="button" class="btn" onclick="saveFileName(event)">Save</button>
+      </div>`;
+    filesList.appendChild(fileListItem);
+  }
+
+  // Append the root node to the fileTreeDiv
+  fileTreeDiv.appendChild(rootNode);
+}
+  
+  
+
+function showFolderNameEditor() {
+  const folderNameSpan = document.querySelector('.folder-name');
+  const folderNameEditor = document.querySelector('.folder-name-editor');
+  const folderNameInput = document.getElementById('folder-name-input');
+  folderNameInput.value = folderData.name;
+  folderNameSpan.style.display = 'none';
+  folderNameEditor.style.display = 'inline-block';
+  folderNameInput.focus();
+}
+
+function showFileNameEditor(event) {
+    const fileNameSpan = event.target;
+    const fileListItem = fileNameSpan.parentElement;
+    const fileNameInput = fileListItem.querySelector('.file-name-input');
+    const fileNameEditor = fileListItem.querySelector('.file-name-editor');
+    fileNameInput.value = fileNameSpan.textContent; // Set the input value to the current file name
+    fileNameSpan.style.display = 'none';
+    fileNameEditor.style.display = 'inline-block';
+    fileNameInput.focus();
+  }
+
+function saveFolderName() {
+  const folderNameSpan = document.querySelector('.folder-name');
+  const folderNameEditor = document.querySelector('.folder-name-editor');
+  const folderNameInput = document.getElementById('folder-name-input');
+  const newName = folderNameInput.value.trim();
+  if (newName !== '') {
+    folderData.name = newName;
+    folderNameSpan.textContent = newName;
+    updateFileTree();
+  }
+  folderNameEditor.style.display = 'none';
+  folderNameSpan.style.display = 'inline';
+}
+
+
+function saveFileName(event) {
+    const fileNameEditor = event.target.parentElement;
+    const fileNameInput = fileNameEditor.querySelector('.file-name-input');
+    const newName = fileNameInput.value.trim();
+    const fileNameSpan = fileNameEditor.parentElement.querySelector('.file-name-span');
+    const index = parseInt(fileNameInput.getAttribute('data-index'));
+
+    if (newName !== '') {
+      filesData[index].customName = newName;
+      fileNameSpan.textContent = newName;
+    }
+
+    // Hide the input box and show the file name span again
+    fileNameEditor.style.display = 'none';
+    fileNameSpan.style.display = 'inline';
+  }
+  
+// Call updateFileTree initially to generate the file tree
+updateFileTree();
+  
+function saveFilesAsZip() {
+  // Create a new JSZip instance
+  const zip = new JSZip();
+
+  // Create the folder for the zip based on the folderData name
+  const folder = zip.folder(folderData.name);
+
+  // Add the files to the folder in the zip using custom names
+  for (const fileData of filesData) {
+    const fileContent = getFileContentByPath(fileData.path);
+
+    if (fileContent !== null) {
+      folder.file(fileData.customName, fileContent);
+    }
+  }
+
+  // Generate the zip content asynchronously
+  zip.generateAsync({ type: 'blob' })
+    .then(function (content) {
+      // Use the traditional way to create a blob URL
+      const blobURL = window.URL.createObjectURL(content);
+
+      // Create a download link for the zip file
+      const element = document.createElement('a');
+      element.href = blobURL;
+      element.download = `${folderData.name}.zip`;
+      element.style.display = 'none';
+
+      // Append the link to the document and click it to trigger the download
+      document.body.appendChild(element);
+      element.click();
+
+      // Clean up after the download is complete
+      document.body.removeChild(element);
+
+      // Release the blob URL
+      window.URL.revokeObjectURL(blobURL);
+    });
+}
+
+// Helper function to get file content based on its path
+function getFileContentByPath(path) {
+  switch (path.split('.').pop().toLowerCase()) {
+    case 'html':
+      return EditorHTML.getValue();
+    case 'css':
+      return EditorCSS.getValue();
+    case 'js':
+      return EditorJS.getValue();
+    default:
+      return null;
+  }
+}
+      </script>
+<!-- [+] SAVE  FILE AS ZIP [+] end -->
 <!--Modal-->
 <script>
   // Get references to all buttons that open modals
@@ -1113,34 +1443,6 @@ function loadDataFromLocalStorage() {
       EditorCSS.getSession().on('change', function(e) { updCSS() });
       EditorJS.getSession().on('change', function(e) { updJS() });
         
-        
-      // 파일 업로드 시
-      function openFile(e) {
-  const file = e.files[0];
-  const reader = new FileReader();
-
-  reader.onload = function(event) {
-    const fileContent = event.target.result;
-    const fileExtension = file.name.split('.').pop().toLowerCase();
-
-    switch (fileExtension) {
-      case 'html':
-        EditorHTML.setValue(fileContent);
-        break;
-      case 'css':
-        EditorCSS.setValue(fileContent);
-        break;
-      case 'js':
-        EditorJS.setValue(fileContent);
-        break;
-      default:
-        console.log('Unsupported file type.');
-    }
-  };
-
-  reader.readAsText(file);
-}
-
       
       // 테마 토글 버튼 클릭 시
       $("#theme-toggle").on('click', function() {
@@ -1232,67 +1534,4 @@ function loadDataFromLocalStorage() {
         editor.remove();
       }
     }
-        
-       
       </script>
-
-  <script>
-  // Function to generate the sharing link and display it
-    function generateSharingLink() {
-      var htmlContent = EditorHTML.getValue();
-      var cssContent = EditorCSS.getValue();
-      var jsContent = EditorJS.getValue();
-
-      // Encode the shared contents in the URL using base64
-      var encodedHTML = btoa(htmlContent);
-      var encodedCSS = btoa(cssContent);
-      var encodedJS = btoa(jsContent);
-
-      // Generate the sharing link with the encoded contents as query parameters
-      var sharingLink = "https://www.geeklinx.in/p/live-code-editor_15.html?" +
-                        "html=" + encodeURIComponent(encodedHTML) +
-                        "&css=" + encodeURIComponent(encodedCSS) +
-                        "&js=" + encodeURIComponent(encodedJS);
-
-      // Display the sharing link and "Copy" button on the page
-      var sharingLinkContainer = document.getElementById("sharingLinkContainer");
-      var sharingLinkInput = document.getElementById("sharingLink");
-      sharingLinkInput.value = sharingLink;
-      sharingLinkContainer.style.display = "block";
-    }
-
-    // Function to copy the link to clipboard
-    function copyLink() {
-      var linkInput = document.getElementById("sharingLink");
-      linkInput.select();
-      linkInput.setSelectionRange(0, 99999); // For mobile devices
-      document.execCommand("copy");
-      alert("Link copied to clipboard!");
-    }
-  </script>
- <script>
-    // Ace Editor setup (similar to the previous client-side code)
-
-    // Function to get the query parameters from the URL
-    function getQueryParams() {
-      var queryParams = {};
-      var search = window.location.search.substring(1);
-      var pairs = search.split("&");
-      for (var i = 0; i < pairs.length; i++) {
-        var pair = pairs[i].split("=");
-        queryParams[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-      }
-      return queryParams;
-    }
-
-    // Get the shared contents from the URL
-    var queryParams = getQueryParams();
-    var htmlContent = queryParams.html ? atob(queryParams.html) : "";
-    var cssContent = queryParams.css ? atob(queryParams.css) : "";
-    var jsContent = queryParams.js ? atob(queryParams.js) : "";
-
-    // Set the shared contents in the respective Ace Editors
-    EditorHTML.setValue(htmlContent, 1);
-    EditorCSS.setValue(cssContent, 1);
-    EditorJS.setValue(jsContent, 1);
-  </script>
